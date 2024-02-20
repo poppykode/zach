@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+{% block slider %}
+  <!-- ======= Intro Section ======= -->
+  {% if sliders %}
+  <div class="intro intro-carousel swiper position-relative">
+    <div class="swiper-wrapper">
+
+
+    {% for slider in sliders %}
+        <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url({{slider.banner_image.url}})">
+          <div class="overlay overlay-a"></div>
+          <div class="intro-content display-table">
+            <div class="table-cell">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <div class="intro-body">
+            
+                      <h3 class="intro-title mb-4 ">
+                         {{slider.header_top}}
+                        <br> 
+                        {{slider.header_bottom}}
+                      </h3>
+                      <p class="intro-subtitle intro-price">
+                        <a href="{{slider.button_link}}"><span class="price-a"  style="border: 2px solid {{slider.button_border_color}};">{{slider.button_text}}</span></a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  
+     
+    </div>
+    <div class="swiper-pagination"></div>
+  </div><!-- End Intro Section -->
+  {% else %}
+  <h3 class="text-center mt-zach-7">No banner/s uploaded</h3>
+ 
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% if services %}
+<section class="section-services section-t8">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title-wrap d-flex justify-content-between">
+            <div class="title-box">
+              <h2 class="title-a">Our Services</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      {% for service in services %}
+        <div class="col-md-4 mb-3">
+          <div class="card-box-c foo">
+            <div class="card-header-c d-flex">
+              <div class="card-box-ico">
+                <img src="{{service.icon.url}}" alt="{{service.name}}" class="icon-zach">
+              </div>
+              <div class="card-title-c align-self-center">
+                <h4 class="title-c alkatra-zach">{{service.name|title}}</h4>
+              </div>
+            </div>
+            <div class="card-footer-c">
+              <a href="#" class="link-c link-icon">Read more
+                <span class="bi bi-chevron-right"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      
+          </div>
+  
+    </div>
+  </section>
+  {% else %}
+  <h3 class="text-center mt-zach-7">No Services added</h3>
+  
+  {% endif %}
+{% if recent_works %}
+  <section class="section-agents section-t8">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title-wrap d-flex justify-content-between">
+            <div class="title-box">
+              <h2 class="title-a">Our Recent Works</h2>
+            </div>
+            <div class="title-link">
+              <a href="#">All Works
+                <span class="bi bi-chevron-right"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      
+        
+        {% for recent_work in recent_works %}
+  
+        <div class="col-md-4">
+          <div class="card-box-b card-shadow news-box">
+            <div class="img-box-b">
+              <img src="{{recent_work.cover_image.url}}" alt="{{recent_work.name}}" class="img-b img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-header-b">
+                <div class="card-category-b">
+                  <a href="#" class="category-b" style="color: #ffffff;">{{recent_work.name|title}}</a>
+                </div>
+                <div class="card-title-b">
+                  <h2 class="title-2">
+                    <a href="#">{{recent_work.service.name|title}}</a>
+                  </h2>
+                </div>
+                <div class="card-date">
+                  <span class="date-b">{{recent_work.timestamp}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% else %}
+  <h3 class="text-center mt-zach-7">No Recent Works added</h3>
+  {% endif %}
+{% endblock %}
+
