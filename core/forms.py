@@ -37,7 +37,7 @@ class EnquiryForm(forms.ModelForm):
         }
 
 class ContactForm(forms.Form):
-    full_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control form-control-lg form-control-a'}))
-    email = forms.EmailField(widget=forms.TextInput(attrs={'class':'form-control form-control-lg form-control-a'}))
-    subject = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control form-control-lg form-control-a'}))
-    message = forms.CharField(widget=forms.Textarea(attrs={'rows':4,'class':'form-control form-control-lg form-control-a'}))
+    full_name = forms.CharField(label='',max_length=100, widget=forms.TextInput(attrs={'class':'form-control form-control-lg form-control-a','placeholder':'Enter full name'}))
+    email = forms.EmailField(label='',widget=forms.TextInput(attrs={'class':'form-control form-control-lg form-control-a','placeholder':'Enter email'}))
+    subject = forms.CharField(label='',max_length=100, widget=forms.TextInput(attrs={'class':'form-control form-control-lg form-control-a','placeholder':'Enter subject'}))
+    message = forms.CharField(label='',widget=forms.Textarea(attrs={'rows':4,'class':'form-control form-control-lg form-control-a','placeholder':'Enter message'}))
