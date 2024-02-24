@@ -24,6 +24,20 @@ class EnquiryForm(forms.ModelForm):
             'budget':'Budget (Optional)'
         }
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 4, },),
-            'booking_date_time': forms.DateInput(attrs={'class': 'datepicker', 'type': 'date', 'data-date-format': 'YYYY-MM-DD'}),
+            'description': forms.Textarea(attrs={'rows': 4,'class': 'form-control form-control-lg form-control-a'},),
+            'booking_date_time': forms.DateInput(attrs={'class': 'form-control form-control-lg form-control-a datepicker', 'type': 'date', 'data-date-format': 'YYYY-MM-DD'}),
+            'service':  forms.SelectMultiple(attrs={'class': 'form-control form-control-lg form-control-a'}),
+            'full_name': forms.TextInput(attrs={'class': 'form-control form-control-lg form-control-a'}), 
+            'phone_number': forms.TextInput(attrs={'class': 'form-control form-control-lg form-control-a'}),
+            'email_address':  forms.EmailInput(attrs={'class': 'form-control form-control-lg form-control-a'}),
+            'location':  forms.TextInput(attrs={'class': 'form-control form-control-lg form-control-a'}),
+            'expected_number_of_guests':  forms.NumberInput(attrs={'class': 'form-control form-control-lg form-control-a datepicker'}),
+            'budget':  forms.NumberInput(attrs={'class': 'form-control form-control-lg form-control-a','step':'0.01'}),
+            'attachment': forms.FileInput(attrs={'class': 'form-control form-control-lg form-control-a'}),
         }
+
+class ContactForm(forms.Form):
+    full_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control form-control-lg form-control-a'}))
+    email = forms.EmailField(widget=forms.TextInput(attrs={'class':'form-control form-control-lg form-control-a'}))
+    subject = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control form-control-lg form-control-a'}))
+    message = forms.CharField(widget=forms.Textarea(attrs={'rows':4,'class':'form-control form-control-lg form-control-a'}))

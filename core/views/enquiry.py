@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
-from ..forms import EnquiryForm
+from core.forms import EnquiryForm
 
 def make_enquiry(request):
     template_name = 'enquiries/make_enquiry.html'

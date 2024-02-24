@@ -4,7 +4,10 @@ from core.models import Service, Folder
 
 def services(request):
     template_name = 'services/services.html'
-    services = Service.objects.all()
+    services_ = Service.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(services_, 6)
+    services = paginator.page(page)
     return render(request, template_name,{'services':services})
 
 def service_details(request, slug):
