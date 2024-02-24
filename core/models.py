@@ -64,8 +64,6 @@ class Image(models.Model):
     class Meta:
         ordering = ["-timestamp", ]
 
-# ZACH2024TYG
-
 class Enquiry(models.Model):
     enquiry_id = models.CharField(max_length = 12)
     service = models.ManyToManyField(Service, related_name = 'service_enquiry')

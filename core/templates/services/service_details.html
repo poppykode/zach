@@ -3,31 +3,106 @@
 {% block title %}{{obj.name|title}}{% endblock %}
 {% block content %}
 <section class="intro-single">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-8">
-                <div class="title-single-box">
-                    <h1 class="title-single">{{obj.name|title}}</h1>
-                    <span class="color-text-a">Service details.</span>
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-4">
-                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="/">Home</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="{% url 'core:services' %}">Services</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                            {{obj.name|title}}
-                        </li>
-                    </ol>
-                </nav>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">{{obj.name|title}}</h1>
+          <span class="color-text-a">Service details.</span>
         </div>
+      </div>
+      <div class="col-md-12 col-lg-4">
+        <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="{% url 'core:services' %}">Services</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              {{obj.name|title}}
+            </li>
+          </ol>
+        </nav>
+      </div>
     </div>
+  </div>
+</section>
+
+<section class="section-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 section-t3 position-relative">
+        <div class="row">
+          <div class="col-md-6 col-lg-5">
+            {% if folders %}
+
+            <div class="row">
+              {% for folder in folders %}
+              <div class="col-md-4">
+                <div class="card-box-b card-shadow news-box">
+                  <div class="img-box-b thumbnail">
+                    <img src="{{folder.cover_image.url}}" alt="{{folder.name}}" class="img-b img-fluid">
+                  </div>
+                  <div class="card-overlay">
+                    <div class="card-header-b">
+                     <small> <i class="bi bi-folder-fill" aria-hidden="true"> </i>  <a href="{% url 'core:folders_images' folder.slug %}" style="color: #ffffff;" class="title-box-d">{{folder.name|title|truncatechars:12}}</a></small>                
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <nav class="pagination-a" aria-label="Page navigation">
+                  <ul class="pagination justify-content-end">
+                      {% if folders.has_previous %}
+                      <li class="page-item">
+                          <a class="page-link" href="?page=1" tabindex="-1">First</a>
+                      </li>
+                      {% endif %}
+                      {% for num in folders.paginator.page_range %}
+                      <li class="page-item {% if folders.number == num %}active{% endif %}">
+                          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                      </li>
+                      {% endfor %}
+                      {% if folders.has_next %}
+                      <li class="page-item">
+                          <a class="page-link" href="?page={{ folders.paginator.num_pages }}">Last</a>
+                      </li>
+                      {% endif %}
+                  </ul>
+              </nav>
+              </div>
+            </div>
+          {% else %}
+          <h3 class="text-center section-t3">No folder/s uploaded for {{obj.name|title}} services.</h3>
+          {% endif %}
+          </div>
+          <div class="col-lg-2  d-none d-lg-block position-relative">
+            <div class="title-vertical d-flex justify-content-start">
+              <span>{{obj.name|title}}</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-5 section-md-t3">
+            <div class="title-box-d">
+              <h3 class="title-d">
+                <img src="{{obj.icon.url}}" alt="{{obj.name}}" class="icon-zach">
+                <br>
+                <span class="color-d">{{obj.name|title}}</span>
+              </h3>
+            </div>
+            <p class="color-text-a">
+              {{obj.description|title}}
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 {% endblock %}
