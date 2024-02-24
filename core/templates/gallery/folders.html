@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Gallery Folders{% endblock %}
+{% block content %}
+
+
+
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">Our Gallery Folders</h1>
+                    <span class="color-text-a">All our works</span>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Gallery Folders
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="news-grid grid">
+    <div class="container">
+        {% if folders %}
+        <div class="row">
+            {% for folders in folders %}
+            <div class="col-md-4">
+                <div class="card-box-b card-shadow news-box">
+                    <div class="img-box-b">
+                        <img src="{{folders.cover_image.url}}" alt="{{folders.name}}" class="img-b img-fluid">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-header-b">
+                            <div class="card-category-b">
+                                <a href="{% url 'core:folders_images' folders.slug %}" class="category-b"
+                                    style="color: #ffffff;">{{folders.name|title}}</a>
+                            </div>
+                            <div class="card-title-b">
+                                <h2 class="title-2">
+                                    <a href="{% url 'core:folders_images' folders.slug %}">{{folders.service.name|title}}
+                                        <br>
+                                        <small><i class="bi bi-pin-fill" aria-hidden="true"></i>
+                                            {{folders.location}}</small>
+                                    </a>
+                                </h2>
+                            </div>
+                            <div class="card-date">
+                                <span class="date-b">{{folders.timestamp}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-end">
+                        {% if folders.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1" tabindex="-1">First</a>
+                        </li>
+                        {% endif %}
+                        {% for num in folders.paginator.page_range %}
+                        <li class="page-item {% if folders.number == num %}active{% endif %}">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                        {% endfor %}
+                        {% if folders.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ folders.paginator.num_pages }}">Last</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>  
+        {% else %}
+        <h3 class="text-center mt-zach-7">No gallery folders created</h3>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
