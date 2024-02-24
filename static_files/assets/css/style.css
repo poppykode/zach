@@ -2180,3 +2180,18 @@ footer .credits {
 .mt-zach-7{
   margin-top: 7em;
 }
+
+/* custom css */
+
+.gallery-img{
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  object-position: 100% 0;
+}
+.pagination-a .pagination .page-item.active .page-link {
+  color: #fff;
+}
+.pagination-a .pagination .page-link:hover, .pagination-a .pagination .page-link:active, .pagination-a .pagination .page-link:focus {
+  color: #fff;
+}
