@@ -74,7 +74,7 @@
             <a class="nav-link alkatra-zach" href="/">Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link alkatra-zach" href="/">Make Enquiry</a>
+            <a class="nav-link alkatra-zach {% if url_name == 'make_enquiry' %} active {% endif %}" href="{% url 'core:make_enquiry' %}">Make Enquiry</a>
           </li>
           <li class="nav-item">
             <a class="nav-link alkatra-zach  {% if url_name == 'folders' %} active {% endif %}" href="{% url 'core:folders' %}">Gallery</a>
@@ -187,7 +187,7 @@
                 <a href="#">Blog</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">Make Enquiry</a>
+                <a href="{% url 'core:make_enquiry' %}">Make Enquiry</a>
               </li>
               <li class="list-inline-item">
                 <a href="#">Gallery</a>

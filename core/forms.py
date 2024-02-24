@@ -13,11 +13,17 @@ class EnquiryForm(forms.ModelForm):
             'location',
             'expected_number_of_guests',
             'budget',
-            'description'
+            'description',
+            'attachment'
             ]
-        widgets = {
-            'service': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        labels = {
+            'booking_date_time':'Booking date',
+            'service':'Select a service or services',
+            'description': 'Any additional Information',
+            'attachment':'Any file or document you might want to attach',
+            'budget':'Budget (Optional)'
         }
-        label = {
-            'booking_date_time':'booking date'
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 4, },),
+            'booking_date_time': forms.DateInput(attrs={'class': 'datepicker', 'type': 'date', 'data-date-format': 'YYYY-MM-DD'}),
         }

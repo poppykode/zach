@@ -119,11 +119,11 @@
             <div class="card-overlay">
               <div class="card-header-b">
                 <div class="card-category-b">
-                  <a href="#" class="category-b" style="color: #ffffff;">{{recent_work.name|title}}</a>
+                  <a href="{% url 'core:folders_images' recent_work.slug %}" class="category-b" style="color: #ffffff;">{{recent_work.name|title}}</a>
                 </div>
                 <div class="card-title-b">
                   <h2 class="title-2">
-                    <a href="#">{{recent_work.service.name|title}}
+                    <a href="{% url 'core:folders_images' recent_work.slug %}">{{recent_work.service.name|title}}
                       <br>
                       <small><i class="bi bi-pin-fill" aria-hidden="true"></i> {{recent_work.location}}</small>
                     </a>
