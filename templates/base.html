@@ -67,7 +67,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link alkatra-zach" href="/">Services</a>
+            <a class="nav-link alkatra-zach {% if url_name == 'services' %} active {% endif %}" href="{% url 'core:services' %}">Services</a>
           </li>
 
           <li class="nav-item">
@@ -126,13 +126,13 @@
             <div class="w-footer-a">
               <ul class="list-unstyled">
                 <li class="color-a">
-                  <span class="color-text-a">Address .</span><br> 65 Eighth Rd , Noordwyk , Midrand, 1687, South Africa
+                  <span class="color-text-a"><strong>Address</strong> </span><br> 65 Eighth Rd , Noordwyk , Midrand, 1687, South Africa
                 </li>
                 <li class="color-a">
-                  <span class="color-text-a">Phone .</span> +27 74 357 8627
+                  <span class="color-text-a"><strong>Phone .</strong></span> +27 74 357 8627
                 </li>
                 <li class="color-a">
-                  <span class="color-text-a">Email .</span> info@zachevents.co.za
+                  <span class="color-text-a"><strong>Email .</strong> </span> info@zachevents.co.za
                 </li>
               </ul>
             </div>
@@ -206,10 +206,10 @@
               </li>
               <li class="list-inline-item">
                 <a href="#">
-                  <i class="bi bi-twitter" aria-hidden="true"></i>
+                  <i class="bi bi-whatsapp" aria-hidden="true"></i>
                 </a>
               </li>
-              <li class="list-inline-item">
+              <!-- <li class="list-inline-item">
                 <a href="#">
                   <i class="bi bi-instagram" aria-hidden="true"></i>
                 </a>
@@ -218,7 +218,7 @@
                 <a href="#">
                   <i class="bi bi-linkedin" aria-hidden="true"></i>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </div>
           <div class="copyright-footer">

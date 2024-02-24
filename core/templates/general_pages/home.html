@@ -73,7 +73,7 @@
               </div>
             </div>
             <div class="card-footer-c">
-              <a href="#" class="link-c link-icon">Read more
+              <a href="{% url 'core:service_details' service.slug %}" class="link-c link-icon">Read more
                 <span class="bi bi-chevron-right"></span>
               </a>
             </div>
@@ -99,7 +99,7 @@
               <h2 class="title-a">Our Recent Works</h2>
             </div>
             <div class="title-link">
-              <a href="#">All Works
+              <a href="{% url 'core:folders' %}">All Works
                 <span class="bi bi-chevron-right"></span>
               </a>
             </div>

@@ -1,4 +1,7 @@
 from django.db import models
+import random
+import string
+import datetime
 
 # Create your models here.
 
@@ -61,7 +64,10 @@ class Image(models.Model):
     class Meta:
         ordering = ["-timestamp", ]
 
+# ZACH2024TYG
+
 class Enquiry(models.Model):
+    enquiry_id = models.CharField(max_length = 12)
     service = models.ManyToManyField(Service, related_name = 'service_enquiry')
     full_name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
@@ -75,6 +81,26 @@ class Enquiry(models.Model):
     attended = models.BooleanField(default=False)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    
+    def save(self, *args, **kwargs):
+        if not self.enquiry_id:
+            self.enquiry_id = self.__generate_enquiry_number()
+        super().save(*args, **kwargs)
+
+    def __generate_enquiry_number(self,size=3, chars=string.ascii_uppercase + string.digits):
+        enquiry_number = ''
+        random_text = "".join(random.choice(chars) for x in range(size))
+        year  = str(datetime.date.today().year)
+        enquiry_number = 'ZACH'+year+random_text
+        try:
+            Enquiry.objects.get(enquiry_id=enquiry_number)
+            self.__generate_enquiry_number()
+        except:
+            return enquiry_number
+
+   
+
 
     def __str__(self):
         return f"{self.full_name} - {self.phone_number} - {self.email_address}"

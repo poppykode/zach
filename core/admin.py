@@ -35,10 +35,10 @@ class ServiceAdmin(admin.ModelAdmin):
 
 class EnquiryAdmin(admin.ModelAdmin):
     date_hierarchy='timestamp'
-    search_fields =['full_name','phone_number','email_address',]
-    list_display =['full_name','phone_number','email_address','booking_date_time','attended',]
+    search_fields =['enquiry_id','full_name','phone_number','email_address',]
+    list_display =['enquiry_id','full_name','phone_number','email_address','booking_date_time','attended',]
     list_filter = ('service','timestamp')
-    readonly_fields = ['updated','timestamp']
+    readonly_fields = ['enquiry_id','updated','timestamp']
     list_display_links = ('full_name',)
 
     class Meta:
