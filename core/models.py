@@ -1,4 +1,6 @@
 from django.db import models
+from core.services.email import Email
+from django.conf import settings
 import random
 import string
 import datetime
@@ -31,6 +33,7 @@ class Service(models.Model):
 
     def __str__(self):
         return self.name
+    
     
     class Meta:
         ordering = ["-timestamp", ]
@@ -85,6 +88,19 @@ class Enquiry(models.Model):
         if not self.enquiry_id:
             self.enquiry_id = self.__generate_enquiry_number()
         super().save(*args, **kwargs)
+        if self.enquiry_id:
+            message = (
+                f'<p>Name: {self.full_name.title()}</p>'
+                f'<p>Phone number: {self.phone_number}</p>'
+                f'<p>Email address: {self.email_address}</p>'      
+            ) 
+            subject = f'Service enquiry {self.enquiry_id} from the website.'
+            email_data = Email(
+                subject,
+                message,
+                [settings.DEFAULT_FROM_EMAIL,'ngonimug@gmail.com']
+            ) 
+            email_data.send()
 
     def __generate_enquiry_number(self,size=3, chars=string.ascii_uppercase + string.digits):
         enquiry_number = ''
@@ -96,9 +112,29 @@ class Enquiry(models.Model):
             self.__generate_enquiry_number()
         except:
             return enquiry_number
+        
 
     def __str__(self):
         return self.enquiry_id
+    
+    class Meta:
+        ordering = ["-timestamp", ]
+
+class Article(models.Model):
+    class PostType(models.TextChoices):
+        BLOG_POST = 'blog post','blog post'
+        NEWS = 'news', 'news'
+    title = models.CharField(max_length = 255)
+    post_type = models.CharField(max_length = 50,choices=PostType.choices,default = PostType.BLOG_POST)
+    author = models.CharField(max_length=255)
+    slug = models.SlugField(unique= True)
+    cover_image = models.ImageField(upload_to='blog/%Y/%m/%d/')
+    description = models.TextField(null=True,blank=True)
+    updated = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
     
     class Meta:
         ordering = ["-timestamp", ]

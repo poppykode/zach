@@ -66,15 +66,15 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link alkatra-zach" href="/">About</a>
+            <a class="nav-link alkatra-zach {% if url_name == 'about' %} active {% endif %}" href="{% url 'core:about' %}">About</a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link alkatra-zach {% if url_name == 'services' %} active {% endif %}" href="{% url 'core:services' %}">Services</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link alkatra-zach" href="/">Blog</a>
+          <li class="nav-item">  
+            <a class="nav-link alkatra-zach {% if url_name == 'articles' %} active {% endif %}" href="{% url 'core:articles' %}">Articles</a>
           </li>
           <li class="nav-item">
             <a class="nav-link alkatra-zach {% if url_name == 'make_enquiry' %} active {% endif %}" href="{% url 'core:make_enquiry' %}">Make Enquiry</a>
@@ -181,13 +181,13 @@
                 <a href="/">Home</a>
               </li>
               <li class="list-inline-item">
-                <a href="/">About</a>
+                <a href="{% url 'core:about' %}">About</a>
               </li>
               <li class="list-inline-item">
                 <a href="{% url 'core:services' %}">Services</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">Blog</a>
+                <a href="{% url 'core:articles' %}">Articles</a>
               </li>
               <li class="list-inline-item">
                 <a href="{% url 'core:make_enquiry' %}">Make Enquiry</a>

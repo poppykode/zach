@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{obj.title|title}}{% endblock %}
+{% block content %}
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">{{obj.post_type|title}} details</h1>
+                    <span class="color-text-a"><strong>Author:</strong> {{obj.author|title}} <strong>Category:</strong> {{obj.post_type|title}} <strong>Date:</strong> {{obj.timestamp}} </span>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'core:articles' %}">Articles</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            {{obj.title|title}}
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-about">
+    <div class="container">
+        <div class="row">        
+            <div class="col-md-12 section-md-t3 mb-3">
+                <div class="title-box-d">
+                    <h3 class="title-d">       
+                        <span class="color-d">{{obj.title|title}}</span>
+                    </h3>
+                </div>
+                <p class="color-text-a">
+                    {{obj.description|title}}
+                </p>
+            </div>         
+        </div>
+    </div>
+</section>
+{% endblock %}

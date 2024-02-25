@@ -2195,3 +2195,6 @@ footer .credits {
 .pagination-a .pagination .page-link:hover, .pagination-a .pagination .page-link:active, .pagination-a .pagination .page-link:focus {
   color: #fff;
 }
+.color-w{
+  color:#ffffff !important;
+}

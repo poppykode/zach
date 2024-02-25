@@ -4,7 +4,8 @@ from .models import (
     Service,
     Folder,
     Image,
-    Enquiry
+    Enquiry,
+    Article
 )
 
 # Register your models here.
@@ -44,8 +45,21 @@ class EnquiryAdmin(admin.ModelAdmin):
     class Meta:
         model= Enquiry
 
+class ArticleAdmin(admin.ModelAdmin):
+    date_hierarchy='timestamp'
+    search_fields =['title',]
+    list_display =['title','author']
+    list_filter = ('title','timestamp','author')
+    readonly_fields = ['updated','timestamp']
+    prepopulated_fields = {"slug":("title",)}
+    list_display_links = ('title',)
+
+    class Meta:
+        model= Article
+
 admin.site.register(Slider)
 admin.site.register(Service,ServiceAdmin)
 admin.site.register(Folder,FolderAdmin)
 admin.site.register(Image)
 admin.site.register(Enquiry,EnquiryAdmin)
+admin.site.register(Article,ArticleAdmin)

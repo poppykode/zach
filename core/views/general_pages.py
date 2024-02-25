@@ -5,6 +5,7 @@ from core.models import (
     Service,
     Folder
 )
+from core.services.email import Email
 from core.forms import ContactForm
 
 def home(request):
@@ -24,9 +25,17 @@ def contact(request):
     template_name = 'general_pages/contact.html'
     if request.method == 'POST':
         if form.is_valid():
-            # send email to admin
-            print(form)
+            email_data = Email(
+                form.cleaned_data['subject'],
+                form.cleaned_data['message'],
+                [form.cleaned_data['email']]
+            ) 
+            email_data.send()
             messages.success(request,'Message successfully sent, we will contact you shortly.')
             return redirect('core:contact')
 
     return render(request, template_name,{'form':form})
+
+def about(request):
+    template_name = 'general_pages/about.html'
+    return render(request,template_name)

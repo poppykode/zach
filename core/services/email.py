@@ -26,17 +26,17 @@ class Email:
     
     def send(self) -> None:
         message_html = self.generate_html()
+        try:
+            send_mail(
+                subject=self.subject,
+                html_message=message_html,
+                message='',
+                from_email='ZaCh Events and Catering.',
+                recipient_list= self.recipient_list,
+                fail_silently=False,
+            )
+        except smtplib.SMTPRecipientsRefused as error:
+            print(error)
+            pass
 
-        for recipient_email in self.recipient_list:            
-            try:
-                send_mail(
-                    subject=self.subject,
-                    html_message=message_html,
-                    message='',
-                    from_email='ZaCh Events and Catering',
-                    recipient_list=[recipient_email],
-                    fail_silently=False,
-                )
-            except smtplib.SMTPRecipientsRefused as error:
-                print(error)
-                pass
+              

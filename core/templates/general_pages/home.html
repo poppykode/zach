@@ -118,7 +118,7 @@
             <div class="card-overlay">
               <div class="card-header-b">
                 <div class="card-category-b">
-                  <a href="{% url 'core:folders_images' recent_work.slug %}" class="category-b" style="color: #ffffff;">{{recent_work.name|title}}</a>
+                  <a href="{% url 'core:folders_images' recent_work.slug %}" class="category-b color-w">{{recent_work.name|title}}</a>
                 </div>
                 <div class="card-title-b">
                   <h2 class="title-2">
@@ -142,5 +142,6 @@
   {% else %}
   <h3 class="text-center section-t3">No Recent Works added</h3>
   {% endif %}
+  
 {% endblock %}
 
