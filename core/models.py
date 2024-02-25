@@ -97,11 +97,8 @@ class Enquiry(models.Model):
         except:
             return enquiry_number
 
-   
-
-
     def __str__(self):
-        return f"{self.full_name} - {self.phone_number} - {self.email_address}"
+        return self.enquiry_id
     
     class Meta:
         ordering = ["-timestamp", ]

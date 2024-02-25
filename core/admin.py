@@ -39,7 +39,7 @@ class EnquiryAdmin(admin.ModelAdmin):
     list_display =['enquiry_id','full_name','phone_number','email_address','booking_date_time','attended',]
     list_filter = ('service','timestamp')
     readonly_fields = ['enquiry_id','updated','timestamp']
-    list_display_links = ('full_name',)
+    list_display_links = ('enquiry_id',)
 
     class Meta:
         model= Enquiry
