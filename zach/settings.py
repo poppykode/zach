@@ -37,9 +37,9 @@ MEDIA_DIR = Path(BASE_DIR/ 'media')
 SECRET_KEY = 'django-insecure-amsby#6ti)ehlrp@_iek@d340)+_nd_v&n@fmbr4&*77=6%k0t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
