@@ -54,9 +54,13 @@ INSTALLED_APPS = [
     'core',
     'crispy_forms',
     'crispy_bootstrap5',
+    'ckeditor',
+    'ckeditor_uploader',
+
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CKEDITOR_UPLOAD_PATH ='uploads/'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

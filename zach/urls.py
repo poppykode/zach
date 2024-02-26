@@ -24,6 +24,7 @@ from core.views.errors import error_404_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
+    path('ckeditor/',include('ckeditor_uploader.urls')),
 ]
 handler404 = error_404_view
 if settings.DEBUG:

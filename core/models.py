@@ -1,5 +1,6 @@
 from django.db import models
 from core.services.email import Email
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 import random
 import string
@@ -119,6 +120,7 @@ class Enquiry(models.Model):
     
     class Meta:
         ordering = ["-timestamp", ]
+        verbose_name_plural = 'Enquiries'
 
 class Article(models.Model):
     class PostType(models.TextChoices):
@@ -129,7 +131,7 @@ class Article(models.Model):
     author = models.CharField(max_length=255)
     slug = models.SlugField(unique= True)
     cover_image = models.ImageField(upload_to='blog/%Y/%m/%d/')
-    description = models.TextField(null=True,blank=True)
+    description = RichTextUploadingField()
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
