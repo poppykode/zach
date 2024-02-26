@@ -98,10 +98,10 @@ WSGI_APPLICATION = 'zach.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'zach_db',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'NAME': 'zachevents$default',
+        'USER': 'zachevents',
+        'PASSWORD': 'ZachKodetek@2016#1',
+        'HOST': 'zachevents.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
@@ -161,3 +161,8 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+try:
+    from .local_settings import *
+except:
+    pass

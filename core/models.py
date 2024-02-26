@@ -99,7 +99,7 @@ class Enquiry(models.Model):
             email_data = Email(
                 subject,
                 message,
-                [settings.DEFAULT_FROM_EMAIL,'ngonimug@gmail.com']
+                [settings.DEFAULT_FROM_EMAIL,'ngonimug@gmail.com','cvjaramba@gmail.com']
             ) 
             email_data.send()
 
